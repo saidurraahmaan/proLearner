@@ -50,12 +50,12 @@ const AddProblem = () => {
     console.log(problemData);
 
     return (
-        <div className='body first-margin-language'>
+        <div className='first-margin-language'>
             <Card sx={{minWidth: 275, my: 0, mx: 5}}>
                 <Container maxWidth="md">
                     <CardContent>
                         <form onSubmit={handleSubmit}>
-                            <h1 style={{marginBottom: "10px"}}>Create A Problem</h1>
+                            <h1 style={{marginBottom: "10px",textAlign:'center'}}>Create A Problem</h1>
                             <div>
                                 Problem Name:
                                 <input
@@ -151,7 +151,7 @@ const AddProblem = () => {
                                     }}
                                 />
                             </div>
-                            <button>Add New</button>
+                            <button>Add New Problem</button>
                         </form>
                     </CardContent>
                 </Container>

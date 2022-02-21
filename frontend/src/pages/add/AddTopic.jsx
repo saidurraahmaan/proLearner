@@ -41,12 +41,12 @@ const AddTopic = () => {
     }
     console.log(content)
     return (
-        <div className='body first-margin-language'>
+        <div className='first-margin-language'>
             <Card sx={{minWidth: 275, my: 0, mx: 5}}>
                 <Container maxWidth="md">
                     <CardContent>
                         <form onSubmit={handleSubmit}>
-                            <h1 style={{marginBottom: "10px"}}>Create A Topic</h1>
+                            <h1 style={{marginBottom: "10px",textAlign:'center'}}>Create A Topic</h1>
                             <div>
                                 Topic Name:
                                 <input
@@ -76,7 +76,7 @@ const AddTopic = () => {
                                 />
 
                             </div>
-                            <label>
+                            <div>
                                 YouTube Key
                                 <input
                                     className="input"
@@ -86,10 +86,10 @@ const AddTopic = () => {
                                     onChange={e => setVideo(e.target.value)}
 
                                     required/>
-                            </label>
+                            </div>
 
 
-                            <button>Add New</button>
+                            <button>Add New Topic</button>
                         </form>
                     </CardContent>
                 </Container>

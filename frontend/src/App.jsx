@@ -11,9 +11,8 @@ import TopicTab from "./pages/topic/TopicTab";
 import ProblemTab from "./pages/topic/ProblemTab";
 import TopicProblems from "./pages/topic/TopicProblems";
 import AddProblem from "./pages/add/AddProblem";
-import Compiler from "./components/compiler/Compiler";
-import Test from "./components/Test";
-import SimpleDialogDemo from "./components/Test";
+import SignUp from "./pages/SignUp";
+import SignIn from "./pages/SignIn";
 
 
 function App() {
@@ -34,6 +33,8 @@ function App() {
                     <Route path='/test/:id' element={<TopicProblems/>}/>
                     <Route path='/problem/:id' element={<ProblemTab/>}/>
                     <Route path='/addProblem/:id' element={<AddProblem/>}/>
+                    <Route path='/signIn' element={<SignIn/>}/>
+                    <Route path='/signUp' element={<SignUp/>}/>
                     {/*<Route path='/' element={<Test/>}*/}
                 </Routes>
             </Layout>
