@@ -22,7 +22,7 @@ const Navbar = () => {
                 </label>
                 <ul>
                     <li><Link to='/'>Home</Link></li>
-                    <li><Link to='/editor'>Community</Link></li>
+                    <li><Link to='/'>Community</Link></li>
                     <li><Link to='/languages'>Languages</Link></li>
                     <li><Link to='/longIn'>Login</Link></li>
                 </ul>

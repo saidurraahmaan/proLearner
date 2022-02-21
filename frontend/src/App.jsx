@@ -34,7 +34,7 @@ function App() {
                     <Route path='/test/:id' element={<TopicProblems/>}/>
                     <Route path='/problem/:id' element={<ProblemTab/>}/>
                     <Route path='/addProblem/:id' element={<AddProblem/>}/>
-                    <Route path='/editor' element={<Test/>}/>
+                    {/*<Route path='/' element={<Test/>}*/}
                 </Routes>
             </Layout>
         </ProLearnerProvider>
