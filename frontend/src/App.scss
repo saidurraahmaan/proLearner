@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+$primary-color: rgb(25, 118, 210);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+
+// Creating gap properties
+@for $i from 1 through 10 {
+  .gap-#{$i} {
+    gap: #{$i/4 + "rem"};
+    grid-gap: #{$i/4 + "rem"};
+  }
+}
