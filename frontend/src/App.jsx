@@ -13,6 +13,7 @@ import TopicProblems from "./pages/topic/TopicProblems";
 import AddProblem from "./pages/add/AddProblem";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
+import Test from "./components/Test";
 
 
 function App() {
@@ -30,12 +31,11 @@ function App() {
                     <Route path="/topic/all/:id" element={<TopicList/>}/>
                     <Route path="/topic/:id" element={<TopicTab/>}/>
                     <Route path="/addTopic/:id" element={<AddTopic/>}/>
-                    <Route path='/test/:id' element={<TopicProblems/>}/>
                     <Route path='/problem/:id' element={<ProblemTab/>}/>
                     <Route path='/addProblem/:id' element={<AddProblem/>}/>
                     <Route path='/signIn' element={<SignIn/>}/>
                     <Route path='/signUp' element={<SignUp/>}/>
-                    {/*<Route path='/' element={<Test/>}*/}
+                    <Route path='/test' element={<Test/>}/>
                 </Routes>
             </Layout>
         </ProLearnerProvider>

@@ -1,5 +1,4 @@
 import Topic from "../models/topicModel.js";
-import Problem from "../models/problemModel.js";
 import asyncHandler from "express-async-handler";
 
 

@@ -55,7 +55,7 @@ const TopicTab = () => {
                     <Tab value="problem" label="Problems"/>
                 </Tabs>
 
-                {value === 'content' && <TopicContent content={topicContent.content} title={topicContent.title}/>}
+                {value === 'content' && <TopicContent content={topicContent.content} title={topicContent.title} video={topicContent.video}/>}
                 {value === 'video' && <TopicVideos videos={topicContent.video}/>}
                 {value === 'problem' && <TopicProblems/>}
             </Box>

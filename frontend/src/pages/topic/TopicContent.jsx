@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import HTMLReactParser from "html-react-parser";
 import axios from "axios";
 import Box from "@material-ui/core/Box";
@@ -28,10 +28,9 @@ const TopicContent = ({content,title}) => {
 
                 </CardContent>
                 <CardActions>
-                    {/*<Button size="small">Learn More</Button>*/}
+                    <Button to='/test' component={Link} size="small" variant='outlined' color='error' >Update Content</Button>
                 </CardActions>
             </Card>
-
         </>
     )
 }
