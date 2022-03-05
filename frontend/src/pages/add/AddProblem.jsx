@@ -76,7 +76,7 @@ const AddProblem = () => {
                                         });
                                     }}
 
-                                    data={problemStatement}
+                                    initData={problemStatement}
                                     onChange={(e) => {
                                         const data = e.editor.getData();
                                         setProblemStatement(data);
@@ -94,7 +94,7 @@ const AddProblem = () => {
                                         });
                                     }}
 
-                                    data={constraints}
+                                    initData={constraints}
                                     onChange={(e) => {
                                         const data = e.editor.getData();
                                         setConstraints(data);
@@ -112,7 +112,7 @@ const AddProblem = () => {
                                     }}
 
 
-                                    data={problemSampleInput}
+                                    initData={problemSampleInput}
                                     onChange={(e) => {
                                         const data = e.editor.getData();
                                         setProblemSampleInput(data);
@@ -125,7 +125,7 @@ const AddProblem = () => {
 
                                 <CKEditor
 
-                                    data={problemSampleOutput}
+                                    initData={problemSampleOutput}
 
                                     onChange={(e) => {
                                         const data = e.editor.getData();
@@ -138,13 +138,9 @@ const AddProblem = () => {
                                 Solutions:
 
                                 <CKEditor
-                                    onReady={editor => {
-                                        editor.editing.view.change(writer => {
-                                            writer.setStyle('height', '100px', editor.editing.view.document.getRoot());
-                                        });
-                                    }}
 
-                                    data={solutions}
+
+                                    initData={solutions}
                                     onChange={(e) => {
                                         const data = e.editor.getData();
                                         setSolutions(data);

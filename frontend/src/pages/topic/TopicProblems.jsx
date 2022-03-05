@@ -48,7 +48,7 @@ const TopicProblems = () => {
                         </List>
                     </CardContent>
                     <CardActions>
-                        <Button to={`/addProblem/${id}`}
+                        <Button to={`/add/problem/${id}`}
                                 component={Link}
                                 variant="contained"
                                 color="secondary"

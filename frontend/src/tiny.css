@@ -1,0 +1,43 @@
+
+.document-editor {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+.tox.tox-tinymce {
+    flex: 1;
+}
+
+.font {
+    font-family: Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    color: #fff;
+}
+
+.status-bar {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    background-color: #207ab7;
+}
+
+.status-bar input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    text-align: right;
+}
+
+.status-bar span {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}

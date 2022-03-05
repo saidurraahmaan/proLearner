@@ -9,11 +9,11 @@ import TopicList from "./pages/topic/TopicList";
 import AddTopic from "./pages/add/AddTopic";
 import TopicTab from "./pages/topic/TopicTab";
 import ProblemTab from "./pages/topic/ProblemTab";
-import TopicProblems from "./pages/topic/TopicProblems";
 import AddProblem from "./pages/add/AddProblem";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Test from "./components/Test";
+import UpdateTopic from "./pages/update/UpdateTopic";
 
 
 function App() {
@@ -30,9 +30,11 @@ function App() {
                     <Route path="/languages" element={<LanguageList/>}/>
                     <Route path="/topic/all/:id" element={<TopicList/>}/>
                     <Route path="/topic/:id" element={<TopicTab/>}/>
-                    <Route path="/addTopic/:id" element={<AddTopic/>}/>
+                    <Route path="/add/topic/:id" element={<AddTopic/>}/>
+                    <Route path="/update/topic/:id" element={<UpdateTopic/>}/>
                     <Route path='/problem/:id' element={<ProblemTab/>}/>
-                    <Route path='/addProblem/:id' element={<AddProblem/>}/>
+                    <Route path='/add/problem/:id' element={<AddProblem/>}/>
+                    {/*<Route path='/update/problem/:id' element={<AddProblem/>}/>*/}
                     <Route path='/signIn' element={<SignIn/>}/>
                     <Route path='/signUp' element={<SignUp/>}/>
                     <Route path='/test' element={<Test/>}/>

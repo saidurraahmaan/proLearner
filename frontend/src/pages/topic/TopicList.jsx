@@ -45,7 +45,7 @@ const TopicList = () => {
             </Grid>
             <Card>
                 <Button
-                    to={`/addTopic/${id}`}
+                    to={`/add/topic/${id}`}
                     component={Link}
                     variant="contained"
                     color="secondary"

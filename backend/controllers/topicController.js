@@ -32,8 +32,24 @@ const createATopic = asyncHandler(async (req,res)=>{
     res.status(201).json(createdTopic);
 })
 
+//@desc     create Topic
+//@route    put / api/ topic/ all/ :id
+//@access   Public
+const updateTopic = asyncHandler(async (req,res)=>{
+    const {id} = req.params;
+    const topic = await Topic.findById(id)
+    if(!topic){
+        res.status(400);
+        throw new Error('Topic not found');
+    }
+    console.log(req.body,id);
+    const updatedTopic = await Topic.findByIdAndUpdate(id,req.body,{new:true});
+    res.status(200).json(updatedTopic);
+})
+
 export {
     getAllTopics,
     getATopic,
     createATopic,
+    updateTopic,
 }

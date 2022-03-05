@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './FormStyle.css';
-import {Link, useParams} from 'react-router-dom'
+import { useParams} from 'react-router-dom'
 import { CKEditor } from 'ckeditor4-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import axios from "axios";
@@ -63,7 +63,7 @@ const AddTopic = () => {
                                 <CKEditor
 
                                     editor={ClassicEditor}
-                                    data={content}
+                                    initData={content}
                                     // onReady={editor => {
                                     //     editor.editing.view.change(writer => {
                                     //         writer.setStyle('height', '450px', editor.editing.view.document.getRoot());
