@@ -14,6 +14,7 @@ import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Test from "./components/Test";
 import UpdateTopic from "./pages/update/UpdateTopic";
+import UpdateProblem from "./pages/update/UpdateProblem";
 
 
 function App() {
@@ -34,7 +35,7 @@ function App() {
                     <Route path="/update/topic/:id" element={<UpdateTopic/>}/>
                     <Route path='/problem/:id' element={<ProblemTab/>}/>
                     <Route path='/add/problem/:id' element={<AddProblem/>}/>
-                    {/*<Route path='/update/problem/:id' element={<AddProblem/>}/>*/}
+                    <Route path='/update/problem/:id' element={<UpdateProblem/>}/>
                     <Route path='/signIn' element={<SignIn/>}/>
                     <Route path='/signUp' element={<SignUp/>}/>
                     <Route path='/test' element={<Test/>}/>

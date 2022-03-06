@@ -24,7 +24,7 @@ const getATopicProblem = asyncHandler(async (req,res)=>{
 })
 
 
-//@desc     create Topic
+//@desc     create Problem
 //@route    GET / api/ problem/all/:id
 //@access   Public
 const createAProblem = asyncHandler(async (req,res)=>{
@@ -34,8 +34,24 @@ const createAProblem = asyncHandler(async (req,res)=>{
     res.status(201).json(createdProblem);
 })
 
+//@desc     Update Problem
+//@route    PUT / api/ problem/update/:id
+//@access   Public
+const updateProblem = asyncHandler(async (req,res)=>{
+    const {id} = req.params;
+    const problem = await Problem.findById(id);
+    if(!problem){
+        res.status(401);
+        throw new Error('Problem not found');
+    }
+    const updatedProblem = await Problem.findByIdAndUpdate(id,req.body,{new:true});
+    console.log(updatedProblem)
+    res.status(201).json(updatedProblem);
+})
+
 export {
     getAllTopicProblem,
     getATopicProblem,
     createAProblem,
+    updateProblem,
 }

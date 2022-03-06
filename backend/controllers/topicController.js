@@ -17,8 +17,7 @@ const getAllTopics = asyncHandler(async (req,res)=>{
 //@access   Public
 const getATopic = asyncHandler(async (req,res)=>{
     const {id} = req.params;
-    const topic = await Topic.findById(id)
-
+    const topic = await Topic.findById(id);
     res.json(topic);
 })
 
@@ -42,7 +41,7 @@ const updateTopic = asyncHandler(async (req,res)=>{
         res.status(400);
         throw new Error('Topic not found');
     }
-    console.log(req.body,id);
+
     const updatedTopic = await Topic.findByIdAndUpdate(id,req.body,{new:true});
     res.status(200).json(updatedTopic);
 })

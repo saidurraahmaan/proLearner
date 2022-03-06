@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React from "react";
 
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -13,6 +13,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TableBody from "@mui/material/TableBody";
+import Button from "@mui/material/Button";
+import {Link, useParams} from "react-router-dom";
 
 const Problem = ({
                      title,
@@ -31,7 +33,7 @@ const Problem = ({
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <Typography
-                                sx={{fontSize: 28, fontWeight: "bold", mb: 2,textAlign:"center"}}
+                                sx={{fontSize: 28, fontWeight: "bold", mb: 2, textAlign: "center"}}
                                 color="primary"
                                 gutterBottom
                             >
@@ -44,8 +46,8 @@ const Problem = ({
                                 <h3>Constraints: </h3>
                                 {HTMLReactParser(constraints)}
                             </Typography>
-                            <Table sx={{border:1}} aria-label="simple table">
-                                <TableHead >
+                            <Table sx={{border: 1}} aria-label="simple table">
+                                <TableHead>
                                     <TableRow sx={{'&:last-child td, &:last-child th': {border: 1}}}>
                                         <TableCell>Input</TableCell>
                                         <TableCell>Output</TableCell>
@@ -55,8 +57,8 @@ const Problem = ({
                                     <TableRow
                                         sx={{'&:last-child td, &:last-child th': {border: 1}}}
                                     >
-                                        <TableCell >{HTMLReactParser(problemSampleInput)}</TableCell>
-                                        <TableCell >{HTMLReactParser(problemSampleOutput)}</TableCell>
+                                        <TableCell>{HTMLReactParser(problemSampleInput)}</TableCell>
+                                        <TableCell>{HTMLReactParser(problemSampleOutput)}</TableCell>
                                     </TableRow>
                                 </TableBody>
                             </Table>
@@ -65,7 +67,7 @@ const Problem = ({
                     </Grid>
                 </CardContent>
                 <CardActions>
-                    {/*<Button size="small">Learn More</Button>*/}
+                    <Button to={`/update/problem/${useParams().id}`} component={Link} size="small" variant='outlined' color='error'>Update Problem</Button>
                 </CardActions>
             </Card>
         </>

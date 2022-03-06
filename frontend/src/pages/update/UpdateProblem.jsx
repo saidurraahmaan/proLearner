@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import './FormStyle.css';
+import React, {useEffect, useState} from 'react';
+import '../add/FormStyle.css';
 import {useParams} from 'react-router-dom'
 import {CKEditor} from 'ckeditor4-react';
 import axios from "axios";
@@ -19,41 +19,47 @@ let problemData = {
     solutions: "",
 }
 
-const AddProblem = () => {
+const UpdateProblem = () => {
     const [title, setTitle] = useState("");
     const [problemStatement, setProblemStatement] = useState("");
     const [problemSampleInput, setProblemSampleInput] = useState("");
     const [problemSampleOutput, setProblemSampleOutput] = useState("");
     const [constraints, setConstraints] = useState("");
     const [solutions, setSolutions] = useState("");
+    const [topicId, setTopicId] = useState('');
 
     const {id} = useParams();
     let navigate = useNavigate();
 
+    //api/ problem/:id
+    //Fetching all problems
+    useEffect(() => {
+        const fetchProblems = async () => {
+            const {data} = await axios.get(`/api/problem/${id}`);
+            setTitle(data.title);
+            setProblemStatement(data.problemStatement);
+            setProblemSampleInput(data.problemSampleInput);
+            setProblemSampleOutput(data.problemSampleOutput);
+            setConstraints(data.constraints);
+            setSolutions(data.solutions);
+            setTopicId(data.topicId);
+        }
+        fetchProblems();
+    }, [])
     const handleSubmit = async (event) => {
         event.preventDefault();
-        problemData = {
-            topicId: id,
-            title: title,
-            problemStatement: problemStatement,
-            problemSampleInput: problemSampleInput,
-            problemSampleOutput: problemSampleOutput,
-            constraints: constraints,
-            solutions: solutions,
-        }
-        const res = await axios.post(`/api/problem/all/${id}`, {
-            problemData
-        })
-        navigate("/languages");
+        const res = await axios.put(`/api/problem/update/${id}`, {
+            title,topicId,problemStatement,problemSampleInput,problemSampleOutput,constraints,solutions
+         })
+         navigate("/languages");
     }
-
     return (
         <div className='first-margin-language'>
             <Card sx={{minWidth: 275, my: 0, mx: 5}}>
                 <Container maxWidth="md">
                     <CardContent>
                         <form onSubmit={handleSubmit}>
-                            <h1 style={{marginBottom: "10px", textAlign: 'center'}}>Create A Problem</h1>
+                            <h1 style={{marginBottom: "10px", textAlign: 'center'}}>Update Problem</h1>
                             <div>
                                 Problem Name:
                                 <input
@@ -66,7 +72,7 @@ const AddProblem = () => {
                             </div>
                             <div className="input" style={{margin: "2px"}}>
                                 Problem Statement:
-
+                                {problemStatement &&
                                 <CKEditor
                                     initData={problemStatement}
                                     config={{
@@ -77,11 +83,11 @@ const AddProblem = () => {
                                         setProblemStatement(data);
                                     }}
                                 />
-
+                                }
                             </div>
                             <div className="input" style={{margin: "2px"}}>
                                 Problem Constraints:
-
+                                {constraints &&
                                 <CKEditor
                                     initData={constraints}
                                     config={{
@@ -115,16 +121,20 @@ const AddProblem = () => {
                                         setConstraints(data);
                                     }}
                                 />
+                                }
                             </div>
                             <div className="input" style={{margin: "2px"}}>
                                 Problem Sample Input:
-
+                                {problemSampleInput &&
                                 <CKEditor
                                     initData={problemSampleInput}
                                     config={{
                                         toolbar: [
-                                            { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', '-', 'RemoveFormat' ] },
-                                            { name: 'clipboard', items: [ 'Undo', 'Redo' ] }
+                                            {
+                                                name: 'basicstyles',
+                                                items: ['Bold', 'Italic', 'Underline', '-', 'RemoveFormat']
+                                            },
+                                            {name: 'clipboard', items: ['Undo', 'Redo']}
                                         ],
                                     }}
                                     onChange={(e) => {
@@ -132,17 +142,21 @@ const AddProblem = () => {
                                         setProblemSampleInput(data);
                                     }}
                                 />
+                                }
                             </div>
 
                             <div className="input" style={{margin: "2px"}}>
                                 Problem Sample Output:
-
+                                {problemSampleOutput &&
                                 <CKEditor
                                     initData={problemSampleOutput}
                                     config={{
                                         toolbar: [
-                                            { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', '-', 'RemoveFormat' ] },
-                                            { name: 'clipboard', items: [ 'Undo', 'Redo' ] }
+                                            {
+                                                name: 'basicstyles',
+                                                items: ['Bold', 'Italic', 'Underline', '-', 'RemoveFormat']
+                                            },
+                                            {name: 'clipboard', items: ['Undo', 'Redo']}
                                         ],
                                     }}
                                     onChange={(e) => {
@@ -150,10 +164,12 @@ const AddProblem = () => {
                                         setProblemSampleOutput(data);
                                     }}
                                 />
+                                }
                             </div>
 
                             <div className="input" style={{margin: "2px"}}>
                                 Solutions:
+                                {solutions &&
                                 <CKEditor
                                     initData={solutions}
                                     config={{
@@ -164,8 +180,9 @@ const AddProblem = () => {
                                         setSolutions(data);
                                     }}
                                 />
+                                }
                             </div>
-                            <button>Add New Problem</button>
+                            <button>Update Problem</button>
                         </form>
                     </CardContent>
                 </Container>
@@ -174,4 +191,4 @@ const AddProblem = () => {
     );
 }
 
-export default AddProblem;
+export default UpdateProblem;

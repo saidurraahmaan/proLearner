@@ -28,7 +28,7 @@ const ProblemTab = () => {
         setValue(newValue);
     };
 
-    //api/ problem/all/:id
+    //api/ problem/:id
     //Fetching all problems
     useEffect(() => {
         const fetchProblems = async () => {
