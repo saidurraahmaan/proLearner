@@ -45,8 +45,21 @@ const updateProblem = asyncHandler(async (req,res)=>{
         throw new Error('Problem not found');
     }
     const updatedProblem = await Problem.findByIdAndUpdate(id,req.body,{new:true});
-    console.log(updatedProblem)
     res.status(201).json(updatedProblem);
+})
+
+//@desc     create Problem
+//@route    DELETE / api/ problem/delete/:id
+//@access   Public
+const deleteAProblem = asyncHandler(async (req,res)=>{
+    const {id} = req.params;
+    let problem = await Problem.findById(id)
+    if(!problem){
+        res.status(400);
+        throw new Error('Problem not found');
+    }
+    await problem.deleteOne();
+    res.status(201).json({id:id});
 })
 
 export {
@@ -54,4 +67,5 @@ export {
     getATopicProblem,
     createAProblem,
     updateProblem,
+    deleteAProblem,
 }
