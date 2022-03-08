@@ -165,7 +165,7 @@ const AddProblem = () => {
                                     }}
                                 />
                             </div>
-                            <button>Add New Problem</button>
+                            <button className='button'>Add New Problem</button>
                         </form>
                     </CardContent>
                 </Container>

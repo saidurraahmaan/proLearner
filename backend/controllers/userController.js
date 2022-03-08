@@ -35,6 +35,7 @@ const registerUser = asyncHandler(async (req, res) => {
             _id: user.id,
             name: user.name,
             email: user.email,
+            isAdmin:user.isAdmin,
             token:generateToken(user._id)
         })
     } else {
@@ -53,6 +54,7 @@ const loginUser = asyncHandler(async (req, res) => {
             _id: user.id,
             name: user.name,
             email: user.email,
+            isAdmin:user.isAdmin,
             token:generateToken(user._id)
         })
     } else {
@@ -66,8 +68,14 @@ const loginUser = asyncHandler(async (req, res) => {
 //@route    GET / api / user/ me
 //@access   Private
 const getMe = asyncHandler(async (req, res) => {
-    console.log(req.user._id)
-    res.json({message: 'User data display'})
+    const user = await User.findById(req.user._id);
+    if(user){
+        res.json(user);
+    }
+    else{
+        res.status(400);
+        throw new Error('User not valid');
+    }
 })
 
 

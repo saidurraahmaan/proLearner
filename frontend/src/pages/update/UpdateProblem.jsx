@@ -182,7 +182,7 @@ const UpdateProblem = () => {
                                 />
                                 }
                             </div>
-                            <button>Update Problem</button>
+                            <button className='button'>Update Problem</button>
                         </form>
                     </CardContent>
                 </Container>

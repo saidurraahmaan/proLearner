@@ -22,19 +22,6 @@ export const ProLearnerProvider = ({children})=>{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     return(
         <ProLearnerContext.Provider value={{
             languages,

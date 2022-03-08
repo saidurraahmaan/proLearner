@@ -64,7 +64,7 @@ nav ul{
     box-shadow: 5px 10px 30px rgba(189, 198, 64, 0.411);
     transition: all ease 0.2s;
 }
-nav ul li a{
+nav ul li a,nav ul li button{
     font-family: calibri, serif;
     height:40px;
     line-height: 43px;
@@ -79,7 +79,7 @@ nav ul li a{
     border-radius: 3px;
     transition: 0.2s ease-in-out;
 }
-nav ul li a:hover{
+nav ul li a:hover,nav ul li button:hover{
     background-color: #00b7ff;
     color:#ffffff;
     box-shadow: 5px 10px 30px rgba(2, 238, 255, 0.336);

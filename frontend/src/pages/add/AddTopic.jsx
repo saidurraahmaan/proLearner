@@ -89,7 +89,7 @@ const AddTopic = () => {
                             </div>
 
 
-                            <button>Add New Topic</button>
+                            <button className='button'>Add New Topic</button>
                         </form>
                     </CardContent>
                 </Container>

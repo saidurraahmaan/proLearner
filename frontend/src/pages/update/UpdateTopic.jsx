@@ -92,7 +92,7 @@ const UpdateTopic = () => {
                                     required/>
                             </div>
 
-                            <button>Update Topic</button>
+                            <button  className='button' >Update Topic</button>
                         </form>
                     </CardContent>
                 </Container>

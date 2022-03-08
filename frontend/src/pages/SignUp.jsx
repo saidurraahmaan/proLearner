@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import "./style.css";
+import {Link} from "react-router-dom";
 
 const SignUp = () => {
     const [formData, setFormData] = useState({
@@ -14,14 +15,18 @@ const SignUp = () => {
             [event.target.name]: event.target.value
         });
 
-    const {fullName, email, password} = formData;
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+        const {fullName, email, password} = formData;
+
+    }
 
     return (
         <div className='topMargin App'>
             <div>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <input
-                        value={fullName}
+                        value={formData.fullName}
                         onChange={e => updateFormData(e)}
                         placeholder="Full name"
                         type="text"
@@ -30,7 +35,7 @@ const SignUp = () => {
                         className='inputValue'
                     />
                     <input
-                        value={email}
+                        value={formData.email}
                         onChange={e => updateFormData(e)}
                         placeholder="Email address"
                         type="email"
@@ -40,7 +45,7 @@ const SignUp = () => {
 
                     />
                     <input
-                        value={password}
+                        value={formData.password}
                         onChange={e => updateFormData(e)}
                         placeholder="Password"
                         type="password"
@@ -52,9 +57,12 @@ const SignUp = () => {
 
                     <button
                         type="submit"
-                        className='buttonValue'
-                    >Submit</button>
+                        className='buttonValue button'
+                    >Register</button>
                 </form>
+                <p>
+                    Already have an account? <Link to='/signin'>Login</Link>
+                </p>
             </div>
         </div>
     );

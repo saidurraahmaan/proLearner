@@ -1,26 +1,40 @@
 import React, {useState} from "react";
 import "./style.css";
+import {Link, useNavigate,Navigate} from 'react-router-dom';
+import {authenticate,getUser} from "./helpers";
+import axios from "axios";
+
 
 const SignUp = () => {
     const [formData, setFormData] = useState({
         email: "",
         password: ""
     });
-
+    const navigate = useNavigate();
     const updateFormData = event =>
         setFormData({
             ...formData,
             [event.target.name]: event.target.value
         });
-
-    const {email, password} = formData;
-
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+        const {email, password} = formData;
+        axios
+            .post('api/user/login',{email,password})
+            .then(res=>{
+                authenticate(res);
+                window.location = "/";
+            })
+            .catch(e=>{
+                console.log(e)
+            });
+    }
     return (
         <div className='topMargin App'>
             <div>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <input
-                        value={email}
+                        value={formData.email}
                         onChange={e => updateFormData(e)}
                         placeholder="Email address"
                         type="email"
@@ -30,7 +44,7 @@ const SignUp = () => {
 
                     />
                     <input
-                        value={password}
+                        value={formData.password}
                         onChange={e => updateFormData(e)}
                         placeholder="Password"
                         type="password"
@@ -42,10 +56,13 @@ const SignUp = () => {
 
                     <button
                         type="submit"
-                        className='buttonValue'
+                        className='buttonValue button'
                     >
-                        Submit
+                        Login
                     </button>
+                    <p>
+                        Don't have an account? <Link to='/signup'>Register</Link>
+                    </p>
                 </form>
             </div>
         </div>

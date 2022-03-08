@@ -1,9 +1,31 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import logo from '../assets/images/logo.png'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
+import {getUser, logout} from "../pages/helpers";
 
 const Navbar = () => {
     const [nav, setNav] = useState(false);
+    const [isUser, setIsUser] = useState(false);
+    const [name, setName] = useState(null);
+
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (getUser()) {
+            setIsUser(true);
+            setName(getUser().data.name);
+        } else {
+            setIsUser(false);
+            setName(null);
+        }
+    }, [])
+
+
+    const handleLogout=()=>{
+        logout();
+        setIsUser(false);
+        setName(null);
+        window.location="/";
+    }
 
     const changeBackground = () => {
         window.scrollY >= 50 ? setNav(true) : setNav(false);
@@ -24,7 +46,16 @@ const Navbar = () => {
                     <li><Link to='/'>Home</Link></li>
                     <li><Link to='/'>Community</Link></li>
                     <li><Link to='/languages'>Languages</Link></li>
-                    <li><Link to='/signUp'>SignUp</Link></li>
+                    {isUser ? (
+                        <>
+                            <li><Link to={`/user/${getUser().data._id}`}>Hello {name}</Link></li>
+                            <li>
+                                <button onClick={handleLogout}>LogOut</button>
+                            </li>
+                        </>
+                    ) : (
+                        <li><Link to='/signIn'>Login</Link></li>
+                    )}
                 </ul>
             </nav>
         </div>
