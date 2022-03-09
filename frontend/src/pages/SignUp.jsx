@@ -1,10 +1,12 @@
 import React, {useState} from "react";
 import "./style.css";
 import {Link} from "react-router-dom";
+import axios from "axios";
+import {authenticate} from "./helpers";
 
 const SignUp = () => {
     const [formData, setFormData] = useState({
-        fullName: "",
+        name: "",
         email: "",
         password: ""
     });
@@ -14,11 +16,24 @@ const SignUp = () => {
             ...formData,
             [event.target.name]: event.target.value
         });
-
     const handleSubmit=(e)=>{
         e.preventDefault();
-        const {fullName, email, password} = formData;
-
+        const {name, email, password} = formData;
+        console.log(name,email,password)
+        axios
+            .post('api/user',{name,email,password})
+            .then(res=>{
+                authenticate(res);
+                window.location="/";
+            })
+            .catch(e=>{
+                alert('User already register')
+                setFormData({
+                    name: "",
+                    email: "",
+                    password: ""
+                })
+            })
     }
 
     return (
@@ -30,7 +45,7 @@ const SignUp = () => {
                         onChange={e => updateFormData(e)}
                         placeholder="Full name"
                         type="text"
-                        name="fullName"
+                        name="name"
                         required
                         className='inputValue'
                     />
@@ -54,7 +69,6 @@ const SignUp = () => {
                         className='inputValue'
 
                     />
-
                     <button
                         type="submit"
                         className='buttonValue button'

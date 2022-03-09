@@ -26,7 +26,7 @@ const SignUp = () => {
                 window.location = "/";
             })
             .catch(e=>{
-                console.log(e)
+                alert('Invalid Credential');
             });
     }
     return (
