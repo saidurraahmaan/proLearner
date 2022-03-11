@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import "./style.css";
-import {Link, useNavigate,Navigate} from 'react-router-dom';
-import {authenticate,getUser} from "./helpers";
+import {Link, useNavigate, Navigate} from 'react-router-dom';
+import {authenticate, getUser} from "./helpers";
 import axios from "axios";
+import GoogleLogin from "react-google-login";
 
 
 const SignUp = () => {
@@ -16,18 +17,36 @@ const SignUp = () => {
             ...formData,
             [event.target.name]: event.target.value
         });
-    const handleSubmit=(e)=>{
+    const handleSubmit = (e) => {
         e.preventDefault();
         const {email, password} = formData;
         axios
-            .post('api/user/login',{email,password})
-            .then(res=>{
+            .post('api/user/login', {email, password})
+            .then(res => {
                 authenticate(res);
                 window.location = "/";
             })
-            .catch(e=>{
+            .catch(e => {
                 alert('Invalid Credential');
             });
+    }
+
+    const googleSuccess = async (res) => {
+        const token = res?.tokenId;
+        try{
+            axios
+                .post('api/user/googleLogin', {tokenId: res.tokenId})
+                .then(res => {
+                    authenticate(res);
+                    window.location = "/";
+                })
+
+        }catch (e) {
+            console.log(e)
+        }
+    }
+    const googleFailure = () => {
+        console.log("Google signin failed");
     }
     return (
         <div className='topMargin App'>
@@ -60,6 +79,21 @@ const SignUp = () => {
                     >
                         Login
                     </button>
+                    <GoogleLogin
+
+                        render={renderProps => (
+                            <button
+                                className='button buttonValue'
+                                onClick={renderProps.onClick}
+                                disabled={renderProps.disabled}>Login with google
+
+                            </button>
+                        )}
+                        clientId="755816303759-cumqvgpa59dra33h1nsv50tkrjhn6udm.apps.googleusercontent.com"
+                        onSuccess={googleSuccess}
+                        onFailure={googleFailure}
+
+                    />
                     <p>
                         Don't have an account? <Link to='/signup'>Register</Link>
                     </p>

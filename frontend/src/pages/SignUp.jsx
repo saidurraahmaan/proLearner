@@ -3,6 +3,8 @@ import "./style.css";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import {authenticate} from "./helpers";
+import GoogleLogin from "react-google-login";
+import googleLogo from '../assets/images/Google.svg'
 
 const SignUp = () => {
     const [formData, setFormData] = useState({
@@ -34,6 +36,24 @@ const SignUp = () => {
                     password: ""
                 })
             })
+    }
+
+    const googleSuccess = async (res) => {
+        const token = res?.tokenId;
+        try{
+            axios
+                .post('api/user/googleLogin', {tokenId: res.tokenId})
+                .then(res => {
+                    authenticate(res);
+                    window.location = "/";
+                })
+
+        }catch (e) {
+            console.log(e)
+        }
+    }
+    const googleFailure = () => {
+        console.log("Google signin failed");
     }
 
     return (
@@ -74,6 +94,21 @@ const SignUp = () => {
                         className='buttonValue button'
                     >Register</button>
                 </form>
+                <GoogleLogin
+
+                    render={renderProps => (
+                        <button
+                            className='button buttonValue'
+                            onClick={renderProps.onClick}
+                            disabled={renderProps.disabled}>Register with google
+
+                        </button>
+                    )}
+                    clientId="755816303759-cumqvgpa59dra33h1nsv50tkrjhn6udm.apps.googleusercontent.com"
+                    onSuccess={googleSuccess}
+                    onFailure={googleFailure}
+
+                />
                 <p>
                     Already have an account? <Link to='/signin'>Login</Link>
                 </p>

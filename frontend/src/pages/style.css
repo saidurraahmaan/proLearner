@@ -38,3 +38,17 @@
     background-color: palevioletred;
     color: white;
 }
+
+.google-btn{
+    margin: 0.8em;
+    padding: 1em;
+    border: 1px solid #e4e6e8;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.1s ease-in;
+}
+
+.google-btn:hover{
+    background-color: palevioletred;
+    color: lightskyblue;
+}
