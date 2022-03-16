@@ -24,13 +24,19 @@ const TopicProblems = () => {
     //api/ problem/all/:id
     //Fetching all problems
     useEffect(() => {
+        let mount = true;
         const fetchProblems = async () => {
             const {data} = await axios.get(`/api/problem/all/${id}`);
-            setProblems(data);
+            if(mount){
+                setProblems(data);
+
+            }
         }
         fetchProblems();
-    }, [])
-
+        return ()=>{
+            mount = false;
+        }
+    }, [problems])
     return (
         <>
             <Card sx={{minWidth: 275, my: 0, mx: 5}}>

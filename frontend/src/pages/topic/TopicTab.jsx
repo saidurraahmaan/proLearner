@@ -30,20 +30,25 @@ const TopicTab = () => {
 
     //Fetching single topic
     useEffect(() => {
+        let mount = true;
         const fetchTopic = async () => {
             const {data} = await axios.get(`/api/topic/${id}`);
-            setTopicContent(data);
+            if(mount){
+                setTopicContent(data);
+            }
             const {languageId} = data;
             const res = await axios.get(`/api/topic/all/${languageId}`);
             setTopics(res.data);
         }
         fetchTopic();
-    }, [])
+        return ()=>{
+            mount = false;
+        }
+    }, [topicContent])
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-
     return (
         <div className='content-margin'>
             <Grid container spacing={2}>
