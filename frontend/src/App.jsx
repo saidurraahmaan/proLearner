@@ -15,6 +15,7 @@ import SignIn from "./pages/SignIn";
 import Test from "./components/Test";
 import UpdateTopic from "./pages/update/UpdateTopic";
 import UpdateProblem from "./pages/update/UpdateProblem";
+import PageNotFound from "./pages/pageNotFound/PageNotFound";
 
 
 function App() {
@@ -29,8 +30,8 @@ function App() {
                     }/>
                     <Route path="/home" element={<Home/>}/>
                     <Route path="/languages" element={<LanguageList/>}/>
-                    <Route path="/topic/all/:id" element={<TopicList/>}/>
                     <Route path="/topic/:id" element={<TopicTab/>}/>
+                    <Route path="/topic/all/:id" element={<TopicList/>}/>
                     <Route path="/add/topic/:id" element={<AddTopic/>}/>
                     <Route path="/update/topic/:id" element={<UpdateTopic/>}/>
                     <Route path='/problem/:id' element={<ProblemTab/>}/>
@@ -39,6 +40,7 @@ function App() {
                     <Route path='/signIn' element={<SignIn/>}/>
                     <Route path='/signUp' element={<SignUp/>}/>
                     <Route path='/test' element={<Test/>}/>
+                    <Route path='/*' element={<PageNotFound/>}/>
                 </Routes>
             </Layout>
         </ProLearnerProvider>

@@ -5,9 +5,9 @@ import Grid from "@mui/material/Grid";
 import Topic from './Topic'
 import AddCircleOutlineSharpIcon from '@mui/icons-material/AddCircleOutlineSharp';
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
-import Paper from "@mui/material/Paper";
+import {Link} from "react-router-dom";
 import Card from "@mui/material/Card";
+import {getUser} from "../helpers";
 
 const TopicList = () => {
     const [topics, setTopics] = useState([]);
@@ -23,13 +23,13 @@ const TopicList = () => {
     }, [])
 
     return (
-        <div className='body topic-margin'>
+        <div className='body content-margin'>
             <Grid container
                   spacing={12}
                   alignItems="center"
                   justifyContent="center"
                   justify="space-around"
-                  style={{minHeight: '100vh',backgroundColor:'white'}}
+                  style={{minHeight: '100vh', backgroundColor: 'white'}}
             >
                 <Grid item xs={6} sm={9}>
 
@@ -43,19 +43,20 @@ const TopicList = () => {
 
                 </Grid>
             </Grid>
+
+            {getUser() &&
             <Card>
                 <Button
                     to={`/add/topic/${id}`}
                     component={Link}
                     variant="contained"
                     color="secondary"
-                    sx={{m:1}}
+                    sx={{m: 1}}
                 >
                     <AddCircleOutlineSharpIcon/>
                 </Button>
             </Card>
-
-
+            }
         </div>
     )
 }

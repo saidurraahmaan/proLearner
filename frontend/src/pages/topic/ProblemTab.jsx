@@ -66,7 +66,10 @@ const ProblemTab = () => {
                         problemSampleOutput={problemSampleOutput}
                         constraints={constraints}
                     />}
-                    {value === 'code-run' && <Submission />}
+                    {value === 'code-run' && <Submission
+                        input={problemSampleInput}
+                        output={problemSampleOutput}
+                    />}
                     {value === 'solution' && <Solution solutions={solutions}/>}
                 </Box>
             </div>

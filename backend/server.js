@@ -8,6 +8,7 @@ import languageRoutes from './routes/languageRoutes.js';
 import topicRoutes from './routes/topicRoutes.js';
 import problemRoutes from "./routes/problemRoutes.js";
 import userRoutes from './routes/usersRoutes.js';
+import submissionRoutes from './routes/submissionRoutes.js'
 
 dotenv.config();
 await connectDB()
@@ -15,7 +16,7 @@ await connectDB()
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
-app.use(cors())
+
 
 
 //Application Routes
@@ -23,7 +24,7 @@ app.use('/api/languages', languageRoutes);
 app.use('/api/topic', topicRoutes);
 app.use('/api/problem', problemRoutes);
 app.use('/api/user', userRoutes);
-
+app.use('/api/submission',submissionRoutes);
 
 //errorFindingMiddleware
 app.use(notFound);

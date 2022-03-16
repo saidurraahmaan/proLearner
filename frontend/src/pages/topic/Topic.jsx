@@ -1,7 +1,6 @@
 import Button from "@mui/material/Button";
 import {Link} from "react-router-dom";
 import React from "react";
-import AddIcon from '@mui/icons-material/Add';
 
 
 const Topic = ({topic, index}) => {

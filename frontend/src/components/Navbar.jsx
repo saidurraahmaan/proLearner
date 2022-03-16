@@ -44,11 +44,11 @@ const Navbar = () => {
                 </label>
                 <ul>
                     <li><Link to='/'>Home</Link></li>
-                    <li><Link to='/'>Community</Link></li>
+                    <li><Link to='/community'>Community</Link></li>
                     <li><Link to='/languages'>Languages</Link></li>
                     {isUser ? (
                         <>
-                            <li><Link to={`/user/${getUser().data._id}`}>Hello {name}</Link></li>
+                            <li><Link to={`/user/${getUser().data._id}`}>Hello {name.split(" ")[0]}</Link></li>
                             <li>
                                 <button onClick={handleLogout}>LogOut</button>
                             </li>
