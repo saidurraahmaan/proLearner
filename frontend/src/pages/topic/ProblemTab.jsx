@@ -7,6 +7,8 @@ import axios from "axios";
 import {useParams} from "react-router-dom";
 import Box from "@mui/material/Box";
 import Submission from "./Submission";
+import Button from "@mui/material/Button";
+import Link from "@mui/material/Link";
 
 
 const ProblemTab = () => {
@@ -61,6 +63,7 @@ const ProblemTab = () => {
 
                     {value === 'problem' && problem && <Problem
                         title={title}
+                        topicId={topicId}
                         problemStatement={problemStatement}
                         problemSampleInput={problemSampleInput}
                         problemSampleOutput={problemSampleOutput}

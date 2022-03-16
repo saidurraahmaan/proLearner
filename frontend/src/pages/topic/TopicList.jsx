@@ -44,18 +44,19 @@ const TopicList = () => {
                 </Grid>
             </Grid>
 
-            {getUser() &&
-            <Card>
-                <Button
-                    to={`/add/topic/${id}`}
-                    component={Link}
-                    variant="contained"
-                    color="secondary"
-                    sx={{m: 1}}
-                >
-                    <AddCircleOutlineSharpIcon/>
-                </Button>
-            </Card>
+            {
+                getUser()? getUser().data.isAdmin && (
+                <Card>
+                    <Button
+                        to={`/add/topic/${id}`}
+                        component={Link}
+                        variant="contained"
+                        color="secondary"
+                        sx={{m: 1}}
+                    >
+                        <AddCircleOutlineSharpIcon/>
+                    </Button>
+                </Card>):<></>
             }
         </div>
     )

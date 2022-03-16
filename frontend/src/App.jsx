@@ -16,6 +16,7 @@ import Test from "./components/Test";
 import UpdateTopic from "./pages/update/UpdateTopic";
 import UpdateProblem from "./pages/update/UpdateProblem";
 import PageNotFound from "./pages/pageNotFound/PageNotFound";
+import ProblemList from "./pages/topic/ProblemList";
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
                     <Route path='/signIn' element={<SignIn/>}/>
                     <Route path='/signUp' element={<SignUp/>}/>
                     <Route path='/test' element={<Test/>}/>
+                    <Route path='/problemList/topic/:id' element={<ProblemList/>}/>
                     <Route path='/*' element={<PageNotFound/>}/>
                 </Routes>
             </Layout>

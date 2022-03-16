@@ -25,30 +25,30 @@ const TopicTab = () => {
         problems: []
     });
     const {id} = useParams();
-    let navigate = useNavigate()
-    let {pathname} = useLocation();
 
     //Fetching single topic
     useEffect(() => {
         let mount = true;
         const fetchTopic = async () => {
             const {data} = await axios.get(`/api/topic/${id}`);
-            if(mount){
+            if (mount) {
                 setTopicContent(data);
             }
             const {languageId} = data;
             const res = await axios.get(`/api/topic/all/${languageId}`);
+
             setTopics(res.data);
         }
         fetchTopic();
-        return ()=>{
+        return () => {
             mount = false;
         }
-    }, [topicContent])
+    }, [id])
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+
     return (
         <div className='content-margin'>
             <Grid container spacing={2}>
@@ -63,9 +63,7 @@ const TopicTab = () => {
 
                             >
                                 <Button
-                                    sx={{
-                                        color: 'success.dark',
-                                    }}
+
                                     to={`/topic/${item._id}`}
                                     component={Link}
                                 >
@@ -94,8 +92,11 @@ const TopicTab = () => {
                             <Tab value="problem" label="Problem List"/>
                         </Tabs>
                         {value === 'content' &&
-                        <TopicContent id={id} content={topicContent.content} title={topicContent.title}
-                                      video={topicContent.video}/>}
+                        <TopicContent id={id}
+                                      content={topicContent.content}
+                                      title={topicContent.title}
+                                      video={topicContent.video}
+                        />}
                         {value === 'video' && <TopicVideos videos={topicContent.video}/>}
                         {value === 'problem' && <TopicProblems/>}
 

@@ -15,15 +15,19 @@ import TableCell from "@mui/material/TableCell";
 import TableBody from "@mui/material/TableBody";
 import Button from "@mui/material/Button";
 import {Link, useParams} from "react-router-dom";
+import {getUser} from "../helpers";
+import {Container} from "@mui/material";
 
 const Problem = ({
                      title,
+                     topicId,
                      problemStatement,
                      problemSampleInput,
                      problemSampleOutput,
                      constraints,
                  }) => {
 
+    const {id} = useParams();
     return (
         <>
             <Card
@@ -66,9 +70,15 @@ const Problem = ({
 
                     </Grid>
                 </CardContent>
-                <CardActions>
-                    <Button to={`/update/problem/${useParams().id}`} component={Link} size="small" variant='outlined' color='error'>Update Problem</Button>
-                </CardActions>
+                {getUser() ? getUser().data.isAdmin && (
+                    <CardActions>
+                        <Button to={`/update/problem/${id}`} component={Link} size="small"
+                                variant='outlined' color='error'>Update Problem</Button>
+                    </CardActions>) : <></>
+                }
+                <Container maxWidth='sm'>
+                    <Button to={`/problemList/topic/${topicId}`} component={Link}>Problem List</Button>
+                </Container>
             </Card>
         </>
     );
