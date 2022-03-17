@@ -29,6 +29,11 @@ const getATopicProblem = asyncHandler(async (req,res)=>{
 //@access   Public
 const createAProblem = asyncHandler(async (req,res)=>{
     const {problemData} =req.body;
+    const {problemStatement,constraints,solutions} = problemData;
+    if(!problemStatement || !solutions || !constraints ){
+        res.status(400);
+        throw new Error("Please add all fields");
+    }
     const problem = new Problem(problemData);
     const createdProblem = await problem.save();
     res.status(201).json(createdProblem);
@@ -43,6 +48,12 @@ const updateProblem = asyncHandler(async (req,res)=>{
     if(!problem){
         res.status(401);
         throw new Error('Problem not found');
+    }
+    const {problemStatement,constraints,solutions} = req.body;
+
+    if(!problemStatement || !solutions || !constraints ){
+        res.status(400);
+        throw new Error("Please add all fields");
     }
     const updatedProblem = await Problem.findByIdAndUpdate(id,req.body,{new:true});
     res.status(201).json(updatedProblem);

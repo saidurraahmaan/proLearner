@@ -24,6 +24,8 @@ const UpdateProblem = () => {
     const [problemStatement, setProblemStatement] = useState("");
     const [problemSampleInput, setProblemSampleInput] = useState("");
     const [problemSampleOutput, setProblemSampleOutput] = useState("");
+    const [additionalInput, setAdditionalInput] = useState("");
+    const [additionalOutput, setAdditionalOutput] = useState("");
     const [constraints, setConstraints] = useState("");
     const [solutions, setSolutions] = useState("");
     const [topicId, setTopicId] = useState('');
@@ -40,6 +42,8 @@ const UpdateProblem = () => {
             setProblemStatement(data.problemStatement);
             setProblemSampleInput(data.problemSampleInput);
             setProblemSampleOutput(data.problemSampleOutput);
+            setAdditionalInput(data.additionalInput);
+            setAdditionalOutput(data.additionalOutput);
             setConstraints(data.constraints);
             setSolutions(data.solutions);
             setTopicId(data.topicId);
@@ -48,10 +52,14 @@ const UpdateProblem = () => {
     }, [])
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const res = await axios.put(`/api/problem/update/${id}`, {
-            title,topicId,problemStatement,problemSampleInput,problemSampleOutput,constraints,solutions
-         })
-         navigate("/languages");
+        axios
+            .put(`/api/problem/update/${id}`, {
+            title,topicId,problemStatement,problemSampleInput,problemSampleOutput,additionalInput,additionalOutput, constraints,solutions
+         }).then(()=>{
+            navigate(-1);
+        }).catch((e)=>{
+            alert('Please Fill all the field or change title')
+        })
     }
     return (
         <div className='first-margin-language'>
@@ -124,8 +132,8 @@ const UpdateProblem = () => {
                                 }
                             </div>
                             <div className="input" style={{margin: "2px"}}>
-                                Problem Sample Input:
-                                {problemSampleInput &&
+                                 Sample Input:
+
                                 <CKEditor
                                     initData={problemSampleInput}
                                     config={{
@@ -142,12 +150,11 @@ const UpdateProblem = () => {
                                         setProblemSampleInput(data);
                                     }}
                                 />
-                                }
+
                             </div>
 
                             <div className="input" style={{margin: "2px"}}>
-                                Problem Sample Output:
-                                {problemSampleOutput &&
+                                 Sample Output:
                                 <CKEditor
                                     initData={problemSampleOutput}
                                     config={{
@@ -164,9 +171,48 @@ const UpdateProblem = () => {
                                         setProblemSampleOutput(data);
                                     }}
                                 />
-                                }
-                            </div>
 
+                            </div>
+                            <div className="input" style={{margin: "2px"}}>
+                                Additional Input:
+                                <CKEditor
+                                    initData={additionalInput}
+                                    config={{
+                                        toolbar: [
+                                            {
+                                                name: 'basicstyles',
+                                                items: ['Bold', 'Italic', 'Underline', '-', 'RemoveFormat']
+                                            },
+                                            {name: 'clipboard', items: ['Undo', 'Redo']}
+                                        ],
+                                    }}
+                                    onChange={(e) => {
+                                        const data = e.editor.getData();
+                                        setAdditionalInput(data);
+                                    }}
+                                />
+
+                            </div>
+                            <div className="input" style={{margin: "2px"}}>
+                                Additional Output:
+                                <CKEditor
+                                    initData={additionalOutput}
+                                    config={{
+                                        toolbar: [
+                                            {
+                                                name: 'basicstyles',
+                                                items: ['Bold', 'Italic', 'Underline', '-', 'RemoveFormat']
+                                            },
+                                            {name: 'clipboard', items: ['Undo', 'Redo']}
+                                        ],
+                                    }}
+                                    onChange={(e) => {
+                                        const data = e.editor.getData();
+                                        setAdditionalOutput(data);
+                                    }}
+                                />
+
+                            </div>
                             <div className="input" style={{margin: "2px"}}>
                                 Solutions:
                                 {solutions &&

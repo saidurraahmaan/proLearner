@@ -19,25 +19,24 @@ const problemSchema = new mongoose.Schema({
     },
     problemSampleInput: {
         type: String,
-        required: true,
+
     },
     problemSampleOutput: {
         type: String,
-        required: true,
+
     },
     constraints:{
         type:String,
         required:true,
     },
 
-    // problemExtraInput: {
-    //     type: String,
-    //     required: true,
-    // },
-    // problemExtraOutput: {
-    //     type: String,
-    //     required: true,
-    // },
+    additionalInput: {
+        type: String,
+
+    },
+    additionalOutput: {
+        type: String,
+    },
     solutions:{
         type:String
     }

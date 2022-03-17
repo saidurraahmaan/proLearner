@@ -45,7 +45,8 @@ const getLanguageId = (language) => {
     }
 }
 
-const Submission = ({input, output}) => {
+
+const Submission = ({input, output, extraInput, extraOutput}) => {
     const [sourceCode, setSourceCode] = useState("");
     const [language, setLanguage] = useState("C");
     const [isLoading, setIsLoading] = useState(false);
@@ -71,9 +72,15 @@ const Submission = ({input, output}) => {
         setIsLoading(true);
         let stdin = input.replace(/<[^>]+>/g, '');
         let expected_output = output.replace(/<[^>]+>/g, '');
+        extraInput = extraInput.replace(/<[^>]+>/g, '');
+        extraOutput = extraOutput.replace(/<[^>]+>/g, '');
+
 
         stdin = base64_encode(stdin);
         expected_output = base64_encode(expected_output);
+        extraInput = base64_encode(extraInput)
+        extraOutput = base64_encode(extraOutput);
+
         const source_code = base64_encode(sourceCode);
         const language_id = getLanguageId(language);
 
@@ -89,8 +96,8 @@ const Submission = ({input, output}) => {
             data: {
                 language_id,
                 source_code,
-                stdin,
-                expected_output
+                stdin: stdin ? stdin : {},
+                expected_output: expected_output ? expected_output : {}
             }
         };
 
@@ -107,9 +114,53 @@ const Submission = ({input, output}) => {
             };
 
             axios.request(options).then(function (response) {
-                setIsLoading(false)
-                setAlertContent(response.data.status.description);
-                setAlert(true);
+
+                if (response.data.status.description === "Accepted") {
+                    var options = {
+                        method: 'POST',
+                        url: 'https://judge0-ce.p.rapidapi.com/submissions',
+                        params: {base64_encoded: 'true', fields: '*'},
+                        headers: {
+                            'content-type': 'application/json',
+                            'x-rapidapi-host': 'judge0-ce.p.rapidapi.com',
+                            'x-rapidapi-key': '16a1000631mshc31899b6d78155bp19c67ejsnd9e9e43b867a'
+                        },
+                        data: {
+                            language_id,
+                            source_code,
+                            stdin: extraInput ? extraInput : {},
+                            expected_output: extraOutput ? extraOutput : {}
+                        }
+                    };
+
+                    axios.request(options).then(function (response) {
+
+                        var options = {
+                            method: 'GET',
+                            url: `https://judge0-ce.p.rapidapi.com/submissions/${response.data.token}`,
+                            params: {base64_encoded: 'true', fields: '*'},
+                            headers: {
+                                'x-rapidapi-host': 'judge0-ce.p.rapidapi.com',
+                                'x-rapidapi-key': '16a1000631mshc31899b6d78155bp19c67ejsnd9e9e43b867a'
+                            }
+                        };
+
+                        axios.request(options).then(function (response) {
+                            setIsLoading(false)
+                            setAlertContent(response.data.status.description);
+                            setAlert(true);
+                        }).catch(function (error) {
+                            console.error(error);
+                        });
+                    }).catch(function (error) {
+                        console.error(error);
+                    });
+                } else {
+                    setIsLoading(false)
+                    setAlertContent(response.data.status.description);
+                    setAlert(true);
+                }
+
             }).catch(function (error) {
                 console.error(error);
             });

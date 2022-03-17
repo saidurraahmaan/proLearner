@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './FormStyle.css';
-import {useParams} from 'react-router-dom'
+import {useLocation, useParams} from 'react-router-dom'
 import {CKEditor} from 'ckeditor4-react';
 import axios from "axios";
 import {useNavigate} from 'react-router-dom';
@@ -24,11 +24,13 @@ const AddProblem = () => {
     const [problemStatement, setProblemStatement] = useState("");
     const [problemSampleInput, setProblemSampleInput] = useState("");
     const [problemSampleOutput, setProblemSampleOutput] = useState("");
+    const [additionalInput, setAdditionalInput] = useState("");
+    const [additionalOutput, setAdditionalOutput] = useState("");
     const [constraints, setConstraints] = useState("");
     const [solutions, setSolutions] = useState("");
 
     const {id} = useParams();
-    let navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -38,13 +40,22 @@ const AddProblem = () => {
             problemStatement: problemStatement,
             problemSampleInput: problemSampleInput,
             problemSampleOutput: problemSampleOutput,
+            additionalInput: additionalInput,
+            additionalOutput: additionalOutput,
             constraints: constraints,
             solutions: solutions,
         }
-        const res = await axios.post(`/api/problem/all/${id}`, {
-            problemData
-        })
-        navigate("/languages");
+        axios
+            .post(`/api/problem/all/${id}`, {
+                problemData
+            })
+            .then(() => {
+                navigate(-1);
+            })
+            .catch((e) => {
+                alert("Please Fill all field or change Title")
+            })
+
     }
 
     return (
@@ -117,14 +128,17 @@ const AddProblem = () => {
                                 />
                             </div>
                             <div className="input" style={{margin: "2px"}}>
-                                Problem Sample Input:
+                                Sample Input:
 
                                 <CKEditor
                                     initData={problemSampleInput}
                                     config={{
                                         toolbar: [
-                                            { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', '-', 'RemoveFormat' ] },
-                                            { name: 'clipboard', items: [ 'Undo', 'Redo' ] }
+                                            {
+                                                name: 'basicstyles',
+                                                items: ['Bold', 'Italic', 'Underline', '-', 'RemoveFormat']
+                                            },
+                                            {name: 'clipboard', items: ['Undo', 'Redo']}
                                         ],
                                     }}
                                     onChange={(e) => {
@@ -135,19 +149,62 @@ const AddProblem = () => {
                             </div>
 
                             <div className="input" style={{margin: "2px"}}>
-                                Problem Sample Output:
+                                Sample Output:
 
                                 <CKEditor
                                     initData={problemSampleOutput}
                                     config={{
                                         toolbar: [
-                                            { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', '-', 'RemoveFormat' ] },
-                                            { name: 'clipboard', items: [ 'Undo', 'Redo' ] }
+                                            {
+                                                name: 'basicstyles',
+                                                items: ['Bold', 'Italic', 'Underline', '-', 'RemoveFormat']
+                                            },
+                                            {name: 'clipboard', items: ['Undo', 'Redo']}
                                         ],
                                     }}
                                     onChange={(e) => {
                                         const data = e.editor.getData();
                                         setProblemSampleOutput(data);
+                                    }}
+                                />
+                            </div>
+                            <div className="input" style={{margin: "2px"}}>
+                                Additional Input:
+
+                                <CKEditor
+                                    initData={additionalInput}
+                                    config={{
+                                        toolbar: [
+                                            {
+                                                name: 'basicstyles',
+                                                items: ['Bold', 'Italic', 'Underline', '-', 'RemoveFormat']
+                                            },
+                                            {name: 'clipboard', items: ['Undo', 'Redo']}
+                                        ],
+                                    }}
+                                    onChange={(e) => {
+                                        const data = e.editor.getData();
+                                        setAdditionalInput(data);
+                                    }}
+                                />
+                            </div>
+                            <div className="input" style={{margin: "2px"}}>
+                                Additional Output:
+
+                                <CKEditor
+                                    initData={additionalOutput}
+                                    config={{
+                                        toolbar: [
+                                            {
+                                                name: 'basicstyles',
+                                                items: ['Bold', 'Italic', 'Underline', '-', 'RemoveFormat']
+                                            },
+                                            {name: 'clipboard', items: ['Undo', 'Redo']}
+                                        ],
+                                    }}
+                                    onChange={(e) => {
+                                        const data = e.editor.getData();
+                                        setAdditionalOutput(data);
                                     }}
                                 />
                             </div>

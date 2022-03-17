@@ -20,11 +20,13 @@ const ProblemTab = () => {
         problemStatement: "",
         problemSampleInput: "",
         problemSampleOutput: "",
+        additionalInput:"",
+        additionalOutput:"",
         constraints: "",
         solutions: "",
     });
     const {id} = useParams();
-    const {title, _id, topicId, problemStatement, problemSampleInput, problemSampleOutput, constraints, solutions} = problem;
+    const {title, _id, topicId, problemStatement, problemSampleInput, problemSampleOutput,additionalInput,additionalOutput, constraints, solutions} = problem;
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -72,6 +74,8 @@ const ProblemTab = () => {
                     {value === 'code-run' && <Submission
                         input={problemSampleInput}
                         output={problemSampleOutput}
+                        extraInput = {additionalInput}
+                        extraOutput = {additionalOutput}
                     />}
                     {value === 'solution' && <Solution solutions={solutions}/>}
                 </Box>
