@@ -76,6 +76,7 @@ const ProblemTab = () => {
                         output={problemSampleOutput}
                         extraInput = {additionalInput}
                         extraOutput = {additionalOutput}
+                        problemId={_id}
                     />}
                     {value === 'solution' && <Solution solutions={solutions}/>}
                 </Box>

@@ -17,6 +17,8 @@ import UpdateTopic from "./pages/update/UpdateTopic";
 import UpdateProblem from "./pages/update/UpdateProblem";
 import PageNotFound from "./pages/pageNotFound/PageNotFound";
 import ProblemList from "./pages/topic/ProblemList";
+import PrivateRoutes from "./components/PrivateRoutes";
+import ProfileContent from "./pages/profile/ProfileContent";
 
 
 function App() {
@@ -29,19 +31,25 @@ function App() {
                             <Home/>
                         </>
                     }/>
+
+                    <Route element={<PrivateRoutes/>}>
+                        <Route path="/add/topic/:id" element={<AddTopic/>}/>
+                        <Route path="/update/topic/:id" element={<UpdateTopic/>}/>
+                        <Route path='/problem/:id' element={<ProblemTab/>}/>
+                        <Route path='/add/problem/:id' element={<AddProblem/>}/>
+                        <Route path='/update/problem/:id' element={<UpdateProblem/>}/>
+                        <Route path='/problemList/topic/:id' element={<ProblemList/>}/>
+                        <Route path='/profile/*' element={<ProfileContent/>}/>
+                    </Route>
                     <Route path="/home" element={<Home/>}/>
                     <Route path="/languages" element={<LanguageList/>}/>
                     <Route path="/topic/:id" element={<TopicTab/>}/>
                     <Route path="/topic/all/:id" element={<TopicList/>}/>
-                    <Route path="/add/topic/:id" element={<AddTopic/>}/>
-                    <Route path="/update/topic/:id" element={<UpdateTopic/>}/>
-                    <Route path='/problem/:id' element={<ProblemTab/>}/>
-                    <Route path='/add/problem/:id' element={<AddProblem/>}/>
-                    <Route path='/update/problem/:id' element={<UpdateProblem/>}/>
+
                     <Route path='/signIn' element={<SignIn/>}/>
                     <Route path='/signUp' element={<SignUp/>}/>
                     <Route path='/test' element={<Test/>}/>
-                    <Route path='/problemList/topic/:id' element={<ProblemList/>}/>
+
                     <Route path='/*' element={<PageNotFound/>}/>
                 </Routes>
             </Layout>

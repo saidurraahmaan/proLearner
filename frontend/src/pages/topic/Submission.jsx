@@ -15,6 +15,7 @@ import {Audio, Plane, Watch} from 'react-loader-spinner'
 import {useNavigate} from "react-router-dom";
 import Container from "@mui/material/Container";
 import Alert from "@mui/material/Alert";
+import {getUser} from "../helpers";
 
 
 const useStyles = makeStyles(theme => ({
@@ -46,13 +47,14 @@ const getLanguageId = (language) => {
 }
 
 
-const Submission = ({input, output, extraInput, extraOutput}) => {
+const Submission = ({input, output, extraInput, extraOutput,problemId}) => {
     const [sourceCode, setSourceCode] = useState("");
     const [language, setLanguage] = useState("C");
     const [isLoading, setIsLoading] = useState(false);
     const [alert, setAlert] = useState(false);
     const [alertContent, setAlertContent] = useState('');
 
+    const navigate = useNavigate();
     const classes = useStyles();
     const inputLabel = React.useRef(null);
     const [labelWidth, setLabelWidth] = React.useState(0);
@@ -146,9 +148,19 @@ const Submission = ({input, output, extraInput, extraOutput}) => {
                         };
 
                         axios.request(options).then(function (response) {
+
                             setIsLoading(false)
                             setAlertContent(response.data.status.description);
                             setAlert(true);
+                            axios
+                                .post("/api/submission",{
+                                    problemId,
+                                    userId:getUser().data._id,
+                                    language,
+                                    verdict:response.data.status.description,
+                                }).then(()=>{
+
+                            }).catch(e=>console.log(e));
                         }).catch(function (error) {
                             console.error(error);
                         });
@@ -159,6 +171,16 @@ const Submission = ({input, output, extraInput, extraOutput}) => {
                     setIsLoading(false)
                     setAlertContent(response.data.status.description);
                     setAlert(true);
+                    axios
+                        .post("/api/submission",{
+                            problemId,
+                            userId:getUser().data._id,
+                            language,
+                            verdict:response.data.status.description,
+                        }).then(()=>{
+
+                    })
+                        .catch(e=>console.log(e))
                 }
 
             }).catch(function (error) {

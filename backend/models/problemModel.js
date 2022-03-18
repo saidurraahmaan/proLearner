@@ -8,6 +8,11 @@ const problemSchema = new mongoose.Schema({
         ref: "Topic",
         required: true,
     },
+    userId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+    },
     title: {
         type: String,
         unique: true,

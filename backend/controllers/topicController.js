@@ -12,6 +12,37 @@ const getAllTopics = asyncHandler(async (req,res)=>{
     res.json(topics);
 })
 
+//@desc     Fetch User all topics
+//@route    GET / api/ topic/ all/ :id
+//@access   Private
+const getMyTopics = asyncHandler(async(req,res)=>{
+
+    const topics =await Topic.find({userId: req.user._id});
+    res.json(topics);
+})
+
+//@desc     Fetch User all topics
+//@route    DELETE / api/ topic/ delete/ :id
+//@access   Private
+const deleteMyTopic = asyncHandler(async (req,res)=>{
+    const {id} = req.params;
+    let topic = await Topic.findById(id)
+    if(!topic){
+        res.status(400);
+        throw new Error('Topic not found');
+    }
+
+    if(req.user._id.toString() === topic.userId.toString()){
+        await topic.deleteOne();
+        res.status(201).json({id:id});
+        return;
+    }
+    res.status(401)
+    throw new Error('Not authorized')
+
+
+})
+
 //@desc     Fetch all topics
 //@route    GET / api /topic / :id
 //@access   Public
@@ -31,7 +62,7 @@ const createATopic = asyncHandler(async (req,res)=>{
     res.status(201).json(createdTopic);
 })
 
-//@desc     create Topic
+//@desc     Update Topic
 //@route    put / api/ topic/ all/ :id
 //@access   Public
 const updateTopic = asyncHandler(async (req,res)=>{
@@ -48,6 +79,8 @@ const updateTopic = asyncHandler(async (req,res)=>{
 
 export {
     getAllTopics,
+    getMyTopics,
+    deleteMyTopic,
     getATopic,
     createATopic,
     updateTopic,

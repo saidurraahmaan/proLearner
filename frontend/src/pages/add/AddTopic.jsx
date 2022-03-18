@@ -8,11 +8,13 @@ import {useNavigate} from 'react-router-dom';
 import Card from "@mui/material/Card";
 import Container from "@mui/material/Container";
 import CardContent from "@mui/material/CardContent";
+import {getUser} from "../helpers";
 
 
 
 let topicData = {
     languageId: "",
+    userId:"",
     title: "",
     content: "",
     video: ""
@@ -25,23 +27,25 @@ const AddTopic = () => {
     const {id} = useParams();
     let navigate = useNavigate();
 
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         topicData = {
             languageId: id,
+            userId:getUser().data._id,
             title: title,
             content: content,
             video: video,
         }
-        console.log(topicData);
+
         const res = await axios.post(`/api/topic/all/${id}`, {
             topicData
         })
-        navigate("/languages");
+        navigate(-1);
     }
-    console.log(content)
+
     return (
-        <div className='first-margin-language'>
+        <div className='content-margin'>
             <Card sx={{minWidth: 275, my: 0, mx: 5}}>
                 <Container maxWidth="md">
                     <CardContent>
@@ -87,8 +91,6 @@ const AddTopic = () => {
 
                                     required/>
                             </div>
-
-
                             <button className='button'>Add New Topic</button>
                         </form>
                     </CardContent>

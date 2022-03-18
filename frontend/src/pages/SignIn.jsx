@@ -23,6 +23,7 @@ const SignUp = () => {
         axios
             .post('api/user/login', {email, password})
             .then(res => {
+
                 authenticate(res);
                 window.location = "/";
             })

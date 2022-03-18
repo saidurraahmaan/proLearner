@@ -7,11 +7,13 @@ import {useNavigate} from 'react-router-dom';
 import Card from "@mui/material/Card";
 import Container from "@mui/material/Container";
 import CardContent from "@mui/material/CardContent";
+import {getUser} from "../helpers";
 
 
 let problemData = {
     topicId: "",
     title: "",
+    userId:"",
     problemStatement: "",
     problemSampleInput: "",
     problemSampleOutput: "",
@@ -37,6 +39,7 @@ const AddProblem = () => {
         problemData = {
             topicId: id,
             title: title,
+            userId:getUser().data._id,
             problemStatement: problemStatement,
             problemSampleInput: problemSampleInput,
             problemSampleOutput: problemSampleOutput,

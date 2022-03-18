@@ -45,7 +45,7 @@ const TopicList = () => {
             </Grid>
 
             {
-                getUser()? getUser().data.isAdmin && (
+                getUser() &&
                 <Card>
                     <Button
                         to={`/add/topic/${id}`}
@@ -56,7 +56,7 @@ const TopicList = () => {
                     >
                         <AddCircleOutlineSharpIcon/>
                     </Button>
-                </Card>):<></>
+                </Card>
             }
         </div>
     )

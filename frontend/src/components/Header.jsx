@@ -1,7 +1,6 @@
-import { Box, AppBar, Toolbar, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import React from "react";
-import Navbar from "./Navbar";
+
 
 export const Header = () => {
     return (
@@ -9,7 +8,7 @@ export const Header = () => {
             <div className='name'>
                 <h1><span>Learn To Code</span></h1>
                 <p className='details'>Learn programming with  fun</p>
-                <a href='#' className='cv-btn'>Let's learn</a>
+                <Link to='/languages' className='cv-btn'>Let's learn</Link>
             </div>
         </div>
 

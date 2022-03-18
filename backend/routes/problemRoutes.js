@@ -1,12 +1,14 @@
 import express from 'express';
-import {getAllTopicProblem,getATopicProblem,createAProblem,updateProblem,deleteAProblem} from '../controllers/problemController.js'
-
+import {getAllTopicProblem,getATopicProblem,createAProblem,updateProblem,deleteAProblem,getMyProblem} from '../controllers/problemController.js'
+import {protect} from "../middleware/authMiddleware.js";
 const router = express.Router();
 
-router.route('/all/:id' ).get(getAllTopicProblem).post(createAProblem);
-router.route('/:id' ).get(getATopicProblem);
-router.route('/update/:id').put(updateProblem)
-router.route('/delete/:id').delete(deleteAProblem)
+router.post("/all/:id",createAProblem);
+router.get("/all/:id",getAllTopicProblem);
+router.get('/:id',getATopicProblem );
+router.put('/update/:id',updateProblem)
+router.delete('/delete/:id',protect, deleteAProblem)
+router.get('/list/my',protect,getMyProblem);
 
 
 export default router;

@@ -7,6 +7,11 @@ const topicSchema = new mongoose.Schema({
         ref: "Language",
         required: true,
     },
+    userId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+    },
     title: {
         type: String,
         unique: true,

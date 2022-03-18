@@ -48,7 +48,7 @@ const Navbar = () => {
                     <li><Link to='/languages'>Languages</Link></li>
                     {isUser ? (
                         <>
-                            <li><Link to={`/user/${getUser().data._id}`}>Hello {name.split(" ")[0]}</Link></li>
+                            <li><Link to={`/profile/statistics`}>Hello {name.split(" ")[0]}</Link></li>
                             <li>
                                 <button onClick={handleLogout}>LogOut</button>
                             </li>

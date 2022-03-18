@@ -34,7 +34,8 @@ const createAProblem = asyncHandler(async (req,res)=>{
         res.status(400);
         throw new Error("Please add all fields");
     }
-    const problem = new Problem(problemData);
+    const problem = new Problem(problemData)
+    console.log(problem);
     const createdProblem = await problem.save();
     res.status(201).json(createdProblem);
 })
@@ -59,7 +60,7 @@ const updateProblem = asyncHandler(async (req,res)=>{
     res.status(201).json(updatedProblem);
 })
 
-//@desc     create Problem
+//@desc     delete Problem
 //@route    DELETE / api/ problem/delete/:id
 //@access   Public
 const deleteAProblem = asyncHandler(async (req,res)=>{
@@ -69,13 +70,24 @@ const deleteAProblem = asyncHandler(async (req,res)=>{
         res.status(400);
         throw new Error('Problem not found');
     }
-    await problem.deleteOne();
-    res.status(201).json({id:id});
+    if(req.user._id.toString() === problem.userId.toString()){
+        await problem.deleteOne();
+        res.status(201).json({id:id})
+        return;
+    }
+    res.status(401)
+    throw new Error('Not authorized')
+
+})
+const getMyProblem = asyncHandler(async (req,res)=>{
+    const problems =await Problem.find({userId: req.user._id});
+    res.json(problems);
 })
 
 export {
     getAllTopicProblem,
     getATopicProblem,
+    getMyProblem,
     createAProblem,
     updateProblem,
     deleteAProblem,

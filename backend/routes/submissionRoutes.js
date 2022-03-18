@@ -1,8 +1,9 @@
 import express from 'express'
-import {getVerdict1,getVerdict2} from "../controllers/submissionController.js";
+import {getVerdict,postSubmission,getMySubmission} from "../controllers/submissionController.js";
+import {protect} from "../middleware/authMiddleware.js";
 
 const router = express.Router();
-router.post('/1',getVerdict1);
-router.post('/2',getVerdict2);
+router.post('/',postSubmission);
+router.get('/',protect,getMySubmission);
 
 export default router;

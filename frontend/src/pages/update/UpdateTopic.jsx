@@ -44,7 +44,7 @@ const UpdateTopic = () => {
         const res = await axios.put(`/api/topic/update/${id}`, {
             languageId, title, content, video
         })
-        navigate("/languages");
+        navigate(-1);
     }
     return (
         <div className='content-margin'>
