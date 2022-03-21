@@ -6,7 +6,7 @@ import BugReportIcon from "@mui/icons-material/BugReport";
 import Card from "@mui/material/Card";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import ListItemText from "@mui/material/ListItemText";
 import axios from "axios";
 import Container from "@mui/material/Container";
@@ -17,6 +17,7 @@ import CardActions from "@mui/material/CardActions";
 import AddCircleOutlineSharpIcon from "@mui/icons-material/AddCircleOutlineSharp";
 import ViewStreamIcon from "@mui/icons-material/ViewStream";
 import LiveHelpIcon from '@mui/icons-material/LiveHelp';
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 
 
@@ -34,7 +35,7 @@ const AllPost = ()=>{
         }
         fetchPost();
     }, [])
-
+    const navigate = useNavigate();
     return(
         <div className='content-margin'>
             <>
@@ -67,6 +68,16 @@ const AllPost = ()=>{
                             </List>
                         </CardContent>
                     </Container>
+                    <Card>
+                        <Button
+                            onClick={()=>navigate(-1)}
+                            variant="contained"
+                            color="warning"
+                            sx={{ m: 1 }}
+                        >
+                            < ArrowBackIcon/>
+                        </Button>
+                    </Card>
                 </Card>
             </>
         </div>

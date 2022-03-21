@@ -11,6 +11,7 @@ import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Button from "@mui/material/Button";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const MyProblemList = ()=>{
 
@@ -84,6 +85,16 @@ const MyProblemList = ()=>{
 
                         ))}
                     </List>
+                </Card>
+                <Card>
+                    <Button
+                        onClick={()=>navigate(-1)}
+                        variant="contained"
+                        color="warning"
+                        sx={{ m: 1 }}
+                    >
+                        < ArrowBackIcon/>
+                    </Button>
                 </Card>
             </Grid>
         </>

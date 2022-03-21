@@ -9,6 +9,8 @@ import Container from "@mui/material/Container";
 import CardContent from "@mui/material/CardContent";
 import {getUser} from "../helpers";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 
 
@@ -67,6 +69,16 @@ const AddPost = ()=> {
                         </form>
                     </CardContent>
                 </Container>
+                <Card>
+                    <Button
+                        onClick={()=>navigate(-1)}
+                        variant="contained"
+                        color="warning"
+                        sx={{ m: 1 }}
+                    >
+                        < ArrowBackIcon/>
+                    </Button>
+                </Card>
             </Card>
         </div>
     );

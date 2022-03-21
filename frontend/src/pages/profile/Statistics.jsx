@@ -8,6 +8,9 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import {Pie} from "react-chartjs-2";
 import axios from "axios";
 import {getUser} from "../helpers";
+import Button from "@mui/material/Button";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import {useNavigate} from "react-router-dom";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -32,7 +35,7 @@ const Statistics = ()=>{
         }
         getAC();
     },[])
-
+    const navigate = useNavigate();
     const Chart = {
 
         labels: ['WA', 'CE', 'RE', 'AC'],
@@ -74,6 +77,16 @@ const Statistics = ()=>{
                     <Typography my={3}>
                         <Pie data={Chart} />
                     </Typography>
+                </Card>
+                <Card>
+                    <Button
+                        onClick={()=>navigate(-1)}
+                        variant="contained"
+                        color="warning"
+                        sx={{ m: 1 }}
+                    >
+                        < ArrowBackIcon/>
+                    </Button>
                 </Card>
             </Grid>
         </>

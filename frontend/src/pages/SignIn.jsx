@@ -39,6 +39,7 @@ const SignUp = () => {
                 .post('api/user/googleLogin', {tokenId: res.tokenId})
                 .then(res => {
                     authenticate(res);
+
                     window.location = "/";
                 })
 

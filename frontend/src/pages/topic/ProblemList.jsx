@@ -7,16 +7,15 @@ import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import Container from "@mui/material/Container";
 import List from "@mui/material/List";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
 import {getUser} from "../helpers";
 import Button from "@mui/material/Button";
 import AddCircleOutlineSharpIcon from "@mui/icons-material/AddCircleOutlineSharp";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const ProblemList = () => {
     const [problemList, setProblemList] = useState([]);
     const {id} = useParams();
-
+    const navigate = useNavigate();
     useEffect(() => {
         let mount = true;
         const fetchProblems = async () => {
@@ -47,6 +46,7 @@ const ProblemList = () => {
                             ))}
                         </List>
                     </CardContent>
+
                     {getUser() &&
                     <CardActions>
                         <Button to={`/add/problem/${id}`}
@@ -59,6 +59,7 @@ const ProblemList = () => {
                     </CardActions>
                     }
                 </Container>
+
             </Card>
         </div>
     );

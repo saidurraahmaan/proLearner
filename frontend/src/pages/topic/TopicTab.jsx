@@ -11,7 +11,8 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import {useLocation, useNavigate} from "react-router-dom";
 import Typography from "@mui/material/Typography";
-
+import {AppBar} from "@mui/material";
+import PersonIcon from "@mui/icons-material/Person";
 
 const TopicTab = () => {
     const [value, setValue] = useState('content');
@@ -52,28 +53,31 @@ const TopicTab = () => {
     return (
         <div className='content-margin'>
             <Grid container spacing={2}>
-                <Grid item xs={1}>
-                    <Box sx={{backgroundColor: 'white'}}>
-                        <Typography align='center' mt={2}>All Topic</Typography>
+                <Grid item xs={2}>
+                    <Box sx={{flexGrow:2}}>
+                            <Typography m={1.5} variant="inherit" align='center'>
+                                All Topics
+                            </Typography>
+
                         {topics.map((item) => (
                             <Typography
+                                sx={{ml:5}}
                                 key={item._id}
                                 mt={2}
-                                align='justify'
-
                             >
                                 <Button
-
                                     to={`/topic/${item._id}`}
                                     component={Link}
                                 >
                                     {item.title}
+
+
                                 </Button>
                             </Typography>
                         ))}
                     </Box>
                 </Grid>
-                <Grid item xs={11}>
+                <Grid item xs={10}>
                     <Box sx={{backgroundColor: 'white'}}>
 
                         <Tabs

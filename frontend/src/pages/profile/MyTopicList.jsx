@@ -11,6 +11,7 @@ import {Link, useNavigate} from "react-router-dom";
 import ListItemText from "@mui/material/ListItemText";
 import List from "@mui/material/List";
 import Button from "@mui/material/Button";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const MyTopicList = () => {
     const [topics, setTopics] = useState([]);
@@ -83,6 +84,16 @@ const MyTopicList = () => {
 
                         ))}
                     </List>
+                    <Card>
+                        <Button
+                            onClick={()=>navigate(-1)}
+                            variant="contained"
+                            color="warning"
+                            sx={{ m: 1 }}
+                        >
+                            < ArrowBackIcon/>
+                        </Button>
+                    </Card>
                 </Card>
             </Grid>
         </>

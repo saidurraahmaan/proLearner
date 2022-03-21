@@ -8,7 +8,6 @@ import Button from "@mui/material/Button";
 import {Link} from "react-router-dom";
 import Card from "@mui/material/Card";
 import { getUser } from "../helpers";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 
 const TopicList = () => {
@@ -26,6 +25,7 @@ const TopicList = () => {
     }, [])
 
     return (
+        <>
         <div className='body content-margin'>
             <Grid container
                   spacing={12}
@@ -61,17 +61,9 @@ const TopicList = () => {
                     </Button>
                 </Card>
             }
-            <Card>
-                <Button
-                    onClick={() => navigate(-1)}
-                    variant="contained"
-                    color="warning"
-                    sx={{ m: 1 }}
-                >
-                    < ArrowBackIcon />
-                </Button>
-            </Card>
+
         </div>
+        </>
     )
 }
 export default TopicList;

@@ -16,6 +16,7 @@ import {useNavigate} from "react-router-dom";
 import Container from "@mui/material/Container";
 import Alert from "@mui/material/Alert";
 import {getUser} from "../helpers";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 
 const useStyles = makeStyles(theme => ({
@@ -224,7 +225,7 @@ const Submission = ({input, output, extraInput, extraOutput,problemId}) => {
                             </>)
                             : (
                                 <Card
-                                    sx={{minWidth: 275, my: 0, mx: 2}}
+                                    sx={{minWidth: 275, my: 0, mx: 15}}
                                 >
                                     <CardContent>
                                         <Grid container spacing={2}>
@@ -232,7 +233,7 @@ const Submission = ({input, output, extraInput, extraOutput,problemId}) => {
                                                 <Editor
                                                     height="80vh"
                                                     defaultLanguage="cpp"
-                                                    defaultValue={`\n#include<stdio.h>\n\n\nint main(){\n\t//Write your code\n\n\n}`}
+                                                    defaultValue={`//Write your code\n\n\n`}
                                                     onChange={handleEditorChange}
                                                     options={{
 
@@ -244,7 +245,7 @@ const Submission = ({input, output, extraInput, extraOutput,problemId}) => {
                                             </Grid>
 
                                             <Grid
-                                                item xs={2}
+                                                item xs={4}
                                             >
                                                 <div>
                                                     <FormControl variant="outlined" className={classes.formControl}>
@@ -261,13 +262,25 @@ const Submission = ({input, output, extraInput, extraOutput,problemId}) => {
                                                             ))}
                                                         </Select>
                                                     </FormControl>
+
+
                                                 </div>
                                                 <div style={{position: 'absolute', bottom: 0, margin: "20px"}}>
-                                                    <Button variant='outlined' onClick={handleSubmit}> Submit </Button>
+                                                    <Button variant='contained' color='success' onClick={handleSubmit}> Submit </Button>
                                                 </div>
                                             </Grid>
                                         </Grid>
                                     </CardContent>
+                                    <Card>
+                                        <Button
+                                            onClick={() => navigate(-1)}
+                                            variant="contained"
+                                            color="warning"
+                                            sx={{mx: 5, my: 1}}
+                                        >
+                                            < ArrowBackIcon/>
+                                        </Button>
+                                    </Card>
                                 </Card>)}
                     </>
                 )}

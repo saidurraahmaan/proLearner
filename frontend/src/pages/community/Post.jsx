@@ -12,6 +12,8 @@ import CommentsBlock from "simple-react-comments";
 import {getUser} from "../helpers";
 import Grid from "@mui/material/Grid";
 import HTMLReactParser from "html-react-parser";
+import Button from "@mui/material/Button";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 
 const Post = () => {
@@ -138,7 +140,18 @@ const Post = () => {
                             }}
                         />
                     </Typography>
+                    <Card>
+                        <Button
+                            onClick={()=>navigate(-1)}
+                            variant="contained"
+                            color="warning"
+                            sx={{ m: 1 }}
+                        >
+                            < ArrowBackIcon/>
+                        </Button>
+                    </Card>
                 </Card>
+
             </Container>
         </div>
     )

@@ -12,6 +12,7 @@ import ListItemText from "@mui/material/ListItemText";
 import List from "@mui/material/List";
 import Button from "@mui/material/Button";
 import SignpostIcon from '@mui/icons-material/Signpost';
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 
 const MyPostList = () => {
@@ -85,6 +86,16 @@ const MyPostList = () => {
 
                         ))}
                     </List>
+                    <Card>
+                        <Button
+                            onClick={()=>navigate(-1)}
+                            variant="contained"
+                            color="warning"
+                            sx={{ m: 1 }}
+                        >
+                            < ArrowBackIcon/>
+                        </Button>
+                    </Card>
                 </Card>
             </Grid>
         </>
