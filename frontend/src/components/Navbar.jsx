@@ -44,7 +44,7 @@ const Navbar = () => {
                 </label>
                 <ul>
                     <li><Link to='/'>Home</Link></li>
-                    <li><Link to='/community'>Community</Link></li>
+                    <li><Link to='/community/post'>Community</Link></li>
                     <li><Link to='/languages'>Languages</Link></li>
                     {isUser ? (
                         <>

@@ -1,6 +1,5 @@
 import {AppBar} from "@mui/material";
 import Typography from "@mui/material/Typography";
-import LeaderboardIcon from "@mui/icons-material/Leaderboard";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import React, {useEffect, useState} from "react";
@@ -8,7 +7,6 @@ import BugReportIcon from '@mui/icons-material/BugReport';
 import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import {getUser} from "../helpers";
-import TopicIcon from "@mui/icons-material/Topic";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";

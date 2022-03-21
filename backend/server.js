@@ -9,6 +9,8 @@ import topicRoutes from './routes/topicRoutes.js';
 import problemRoutes from "./routes/problemRoutes.js";
 import userRoutes from './routes/usersRoutes.js';
 import submissionRoutes from './routes/submissionRoutes.js'
+import postRoutes from './routes/postRoutes.js'
+
 
 dotenv.config();
 await connectDB()
@@ -25,6 +27,7 @@ app.use('/api/topic', topicRoutes);
 app.use('/api/problem', problemRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/submission',submissionRoutes);
+app.use('/api/post',postRoutes);
 
 //errorFindingMiddleware
 app.use(notFound);

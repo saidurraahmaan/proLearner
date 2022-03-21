@@ -1,7 +1,7 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
-import {Button, Container,AppBar} from "@mui/material";
+import {Button, Container, AppBar} from "@mui/material";
 import Statistics from "./Statistics";
 import Typography from "@mui/material/Typography";
 import PersonIcon from '@mui/icons-material/Person';
@@ -15,7 +15,7 @@ import MyTopicList from "./MyTopicList";
 
 const ProfileContent = () => {
     const param = useLocation()
-    const {pathname}= useLocation();
+    const {pathname} = useLocation();
     return (
         <div className='content-margin'>
             <Box sx={{flexGrow: 1}}>
@@ -62,19 +62,33 @@ const ProfileContent = () => {
                                         startIcon={<BugReportIcon/>}
                                         to='/profile/myProblem'
                                         component={Link}
-                                    > My
-                                        Problem </Button>
+                                    >
+                                        My Problem
+                                    </Button>
+                                </Typography>
+
+                                <Typography my={3}>
+
+                                    <Button
+                                        color='secondary'
+                                        sx={{ml: 3}}
+                                        startIcon={<BugReportIcon/>}
+                                        to='/profile/myProblem'
+                                        component={Link}
+                                    >
+                                        My Problem
+                                    </Button>
                                 </Typography>
                             </Card>
                         </Grid>
                         {
-                            pathname==='/profile/statistics' ? <Statistics/> :<></>
+                            pathname === '/profile/statistics' ? <Statistics/> : <></>
                         }
                         {
-                            pathname==='/profile/myProblem' ? <MyProblemList/> :<></>
+                            pathname === '/profile/myProblem' ? <MyProblemList/> : <></>
                         }
                         {
-                            pathname==='/profile/myTopic' ? <MyTopicList/> :<></>
+                            pathname === '/profile/myTopic' ? <MyTopicList/> : <></>
                         }
                     </Grid>
                 </Container>

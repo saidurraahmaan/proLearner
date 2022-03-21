@@ -19,6 +19,9 @@ import PageNotFound from "./pages/pageNotFound/PageNotFound";
 import ProblemList from "./pages/topic/ProblemList";
 import PrivateRoutes from "./components/PrivateRoutes";
 import ProfileContent from "./pages/profile/ProfileContent";
+import AllPost from "./pages/community/AllPost";
+import Post from "./pages/community/Post";
+import AddPost from "./pages/community/AddPost";
 
 
 function App() {
@@ -40,6 +43,7 @@ function App() {
                         <Route path='/update/problem/:id' element={<UpdateProblem/>}/>
                         <Route path='/problemList/topic/:id' element={<ProblemList/>}/>
                         <Route path='/profile/*' element={<ProfileContent/>}/>
+                        <Route path='/add/post' element={<AddPost/>}  />
                     </Route>
                     <Route path="/home" element={<Home/>}/>
                     <Route path="/languages" element={<LanguageList/>}/>
@@ -49,6 +53,9 @@ function App() {
                     <Route path='/signIn' element={<SignIn/>}/>
                     <Route path='/signUp' element={<SignUp/>}/>
                     <Route path='/test' element={<Test/>}/>
+
+                    <Route path='/community/post' element={<AllPost/>}/>
+                    <Route path='/community/post/:id' element={<Post/>} />
 
                     <Route path='/*' element={<PageNotFound/>}/>
                 </Routes>

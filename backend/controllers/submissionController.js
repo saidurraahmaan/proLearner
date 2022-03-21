@@ -2,6 +2,7 @@
 import asyncHandler from 'express-async-handler'
 import axios from 'axios';
 import Submission from "../models/submissionModel.js";
+import User from "../models/userModel.js";
 
 //@desc     Get Verdict
 //@route    POST / api/ submission/
@@ -30,6 +31,18 @@ const postSubmission = asyncHandler(async (req,res)=>{
 //@route    POST / api/ submission/
 //@access   Private
 const getMySubmission = asyncHandler(async(req,res)=>{
+
+    const user = await User.findById(req.user._id);
+
+    if(user.isAdmin){
+        const AC = await Submission.countDocuments({verdict:"Accepted"})
+        const WA = await Submission.countDocuments({verdict:"Wrong Answer"})
+        const CE = await Submission.countDocuments({verdict:"Compilation Error"})
+        const RE = await Submission.countDocuments({verdict:"Runtime Error (NZEC)"})
+        res.status(201).json({AC,WA,RE,CE});
+        return;
+    }
+
     const AC = await Submission.countDocuments({
         userId:req.user._id,
         verdict:"Accepted"

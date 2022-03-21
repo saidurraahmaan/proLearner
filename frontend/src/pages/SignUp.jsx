@@ -5,6 +5,7 @@ import axios from "axios";
 import {authenticate} from "./helpers";
 import GoogleLogin from "react-google-login";
 import googleLogo from '../assets/images/Google.svg'
+import GoogleIcon from "@mui/icons-material/Google";
 
 const SignUp = () => {
     const [formData, setFormData] = useState({
@@ -100,7 +101,14 @@ const SignUp = () => {
                         <button
                             className='button buttonValue'
                             onClick={renderProps.onClick}
-                            disabled={renderProps.disabled}>Register with google
+                            disabled={renderProps.disabled}>
+                            {<span style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent:'center',
+                                flexWrap: 'wrap',
+                            }}><GoogleIcon/> <span style={{margin:'0 20px'}}>Register with Google</span>
+                                </span>}
 
                         </button>
                     )}

@@ -4,7 +4,7 @@ import {Link, useNavigate, Navigate} from 'react-router-dom';
 import {authenticate, getUser} from "./helpers";
 import axios from "axios";
 import GoogleLogin from "react-google-login";
-
+import GoogleIcon from '@mui/icons-material/Google';
 
 const SignUp = () => {
     const [formData, setFormData] = useState({
@@ -84,9 +84,17 @@ const SignUp = () => {
 
                         render={renderProps => (
                             <button
+
                                 className='button buttonValue'
                                 onClick={renderProps.onClick}
-                                disabled={renderProps.disabled}>Login with google
+                                disabled={renderProps.disabled}>
+                                {<span style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent:'center',
+                                    flexWrap: 'wrap',
+                                }}><GoogleIcon/> <span style={{margin:'0 20px'}}>Login with Google</span>
+                                </span>}
 
                             </button>
                         )}

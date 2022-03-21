@@ -124,7 +124,7 @@ const googleLogin = asyncHandler(async (req, res) => {
 //@route    GET / api / user/ me
 //@access   Private
 const getMe = asyncHandler(async (req, res) => {
-    console.log(req.user._id);
+
     const user = await User.findById(req.user._id);
     if (user) {
         res.json(user);
@@ -142,9 +142,16 @@ const generateToken = (id) => {
     })
 }
 
+const getUser = asyncHandler(async(req,res)=>{
+    const {id} = req.params;
+    const user = await User.findById(id);
+    res.json(user);
+})
+
 export {
     registerUser,
     loginUser,
+    getUser,
     googleLogin,
     getMe,
 }
