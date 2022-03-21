@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import PersonIcon from '@mui/icons-material/Person';
 import TopicIcon from '@mui/icons-material/Topic';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
+import SignpostIcon from '@mui/icons-material/Signpost';
 import BugReportIcon from '@mui/icons-material/BugReport';
 import Box from "@mui/material/Box";
 import {Link, useLocation, useParams} from "react-router-dom";
@@ -72,11 +73,11 @@ const ProfileContent = () => {
                                     <Button
                                         color='secondary'
                                         sx={{ml: 3}}
-                                        startIcon={<BugReportIcon/>}
-                                        to='/profile/myProblem'
+                                        startIcon={<SignpostIcon/>}
+                                        to='/profile/myPost'
                                         component={Link}
                                     >
-                                        My Problem
+                                        My Post
                                     </Button>
                                 </Typography>
                             </Card>
