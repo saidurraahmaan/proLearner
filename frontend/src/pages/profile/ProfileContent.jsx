@@ -13,6 +13,7 @@ import Box from "@mui/material/Box";
 import {Link, useLocation, useParams} from "react-router-dom";
 import MyProblemList from "./MyProblemList";
 import MyTopicList from "./MyTopicList";
+import MyPostList from "./MyPostList";
 
 const ProfileContent = () => {
     const param = useLocation()
@@ -90,6 +91,9 @@ const ProfileContent = () => {
                         }
                         {
                             pathname === '/profile/myTopic' ? <MyTopicList/> : <></>
+                        }
+                        {
+                            pathname === '/profile/myPost' ? <MyPostList/> : <></>
                         }
                     </Grid>
                 </Container>

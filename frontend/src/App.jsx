@@ -22,6 +22,7 @@ import ProfileContent from "./pages/profile/ProfileContent";
 import AllPost from "./pages/community/AllPost";
 import Post from "./pages/community/Post";
 import AddPost from "./pages/community/AddPost";
+import UpdatePost from "./pages/update/UpdatePost";
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
                         <Route path='/problemList/topic/:id' element={<ProblemList/>}/>
                         <Route path='/profile/*' element={<ProfileContent/>}/>
                         <Route path='/add/post' element={<AddPost/>}  />
+                        <Route path = '/update/post/:id' element={<UpdatePost/>} />
                     </Route>
                     <Route path="/home" element={<Home/>}/>
                     <Route path="/languages" element={<LanguageList/>}/>
