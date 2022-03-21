@@ -1,4 +1,4 @@
-import {useParams} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import Grid from "@mui/material/Grid";
@@ -7,11 +7,14 @@ import AddCircleOutlineSharpIcon from '@mui/icons-material/AddCircleOutlineSharp
 import Button from "@mui/material/Button";
 import {Link} from "react-router-dom";
 import Card from "@mui/material/Card";
-import {getUser} from "../helpers";
+import { getUser } from "../helpers";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 
 const TopicList = () => {
     const [topics, setTopics] = useState([]);
-    const {id} = useParams();
+    const { id } = useParams();
+    const navigate = useNavigate();
 
     //Fetching all topics
     useEffect(() => {
@@ -58,6 +61,16 @@ const TopicList = () => {
                     </Button>
                 </Card>
             }
+            <Card>
+                <Button
+                    onClick={() => navigate(-1)}
+                    variant="contained"
+                    color="warning"
+                    sx={{ m: 1 }}
+                >
+                    < ArrowBackIcon />
+                </Button>
+            </Card>
         </div>
     )
 }
